@@ -271,14 +271,10 @@ class FetchInfo(object):
         ref_type = None
         if remote_local_ref == "FETCH_HEAD":
             ref_type = SymbolicReference
-        elif ref_type_name in ("remote-tracking", "branch"):
-            # note: remote-tracking is just the first part of the 'remote-tracking branch' token.
-            # We don't parse it correctly, but its enough to know what to do, and its new in git 1.7something
-            ref_type = RemoteReference
         elif ref_type_name == "tag":
             ref_type = TagReference
         else:
-            raise TypeError("Cannot handle reference type: %r" % ref_type_name)
+            ref_type = RemoteReference
         #END handle ref type
             
         # create ref instance
