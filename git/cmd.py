@@ -338,6 +338,7 @@ class Git(LazyMixin):
                         stderr=PIPE,
                         stdout=PIPE,
                         close_fds=(os.name=='posix'),# unsupported on linux
+                        bufsize=(10 *1024 * 1024),
                         **subprocess_kwargs
                         )
         if as_process:
